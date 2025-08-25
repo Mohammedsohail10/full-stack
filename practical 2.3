@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVG Drawing Tool</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    #toolbar {
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 8px 15px;
+        margin: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    svg {
+        border: 2px solid #333;
+        background-color: #fff;
+        width: 80%;
+        height: 500px;
+        cursor: crosshair;
+    }
+</style>
+</head>
+<body>
+
+<h1>SVG Drawing Tool</h1>
+
+<div id="toolbar">
+    <button id="drawRect">Draw Rectangle</button>
+    <button id="drawCircle">Draw Circle</button>
+    <button id="clearCanvas">Clear Canvas</button>
+</div>
+
+<svg id="drawingArea"></svg>
+
+<script>
+    const svg = document.getElementById('drawingArea');
+    let drawing = false;
+    let shapeType = 'rect';
+    let currentShape = null;
+    let startX = 0;
+    let startY = 0;
+
+    // Buttons
+    document.getElementById('drawRect').addEventListener('click', () => shapeType = 'rect');
+    document.getElementById('drawCircle').addEventListener('click', () => shapeType = 'circle');
+    document.getElementById('clearCanvas').addEventListener('click', () => svg.innerHTML = '');
+
+    // Mouse down - start drawing
+    svg.addEventListener('mousedown', (e) => {
+        drawing = true;
+        startX = e.offsetX;
+        startY = e.offsetY;
+
+        if (shapeType === 'rect') {
+            currentShape = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            currentShape.setAttribute('x', startX);
+            currentShape.setAttribute('y', startY);
+            currentShape.setAttribute('width', 0);
+            currentShape.setAttribute('height', 0);
+            currentShape.setAttribute('fill', 'rgba(0, 128, 255, 0.5)');
+            currentShape.setAttribute('stroke', 'blue');
+        } else if (shapeType === 'circle') {
+            currentShape = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            currentShape.setAttribute('cx', startX);
+            currentShape.setAttribute('cy', startY);
+            currentShape.setAttribute('r', 0);
+            currentShape.setAttribute('fill', 'rgba(255, 128, 0, 0.5)');
+            currentShape.setAttribute('stroke', 'orange');
+        }
+
+        svg.appendChild(currentShape);
+    });
+
+    // Mouse move - update shape
+    svg.addEventListener('mousemove', (e) => {
+        if (!drawing) return;
+
+        const currentX = e.offsetX;
+        const currentY = e.offsetY;
+
+        if (shapeType === 'rect') {
+            const width = Math.abs(currentX - startX);
+            const height = Math.abs(currentY - startY);
+            currentShape.setAttribute('width', width);
+            currentShape.setAttribute('height', height);
+            currentShape.setAttribute('x', Math.min(currentX, startX));
+            currentShape.setAttribute('y', Math.min(currentY, startY));
+        } else if (shapeType === 'circle') {
+            const radius = Math.sqrt(Math.pow(currentX - startX, 2) + Math.pow(currentY - startY, 2));
+            currentShape.setAttribute('r', radius);
+        }
+    });
+
+    // Mouse up - finish drawing
+    svg.addEventListener('mouseup', () => {
+        drawing = false;
+        currentShape = null;
+    });
+
+    // Optional: cancel drawing if mouse leaves SVG
+    svg.addEventListener('mouseleave', () => {
+        drawing = false;
+        currentShape = null;
+    });
+</script>
+
+</body>
+</html>
