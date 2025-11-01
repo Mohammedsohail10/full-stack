@@ -1,0 +1,285 @@
+practical 5.1
+
+// main.js
+
+const express = require("express");
+const mongoose = require("mongoose");
+const app = express();
+
+app.use(express.json());
+
+// ✅ Connect to MongoDB
+mongoose
+  .connect("mongodb://127.0.0.1:27017/ecommerce_catalog", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.log("MongoDB connection error:", err));
+
+// ✅ Product Schema with Nested Variants
+const variantSchema = new mongoose.Schema({
+  color: String,
+  size: String,
+  stock: Number,
+});
+
+const productSchema = new mongoose.Schema({
+  name: String,
+  price: Number,
+  category: String,
+  variants: [variantSchema],
+});
+
+const Product = mongoose.model("Product", productSchema);
+
+// ✅ Insert sample data (only once)
+app.get("/insert-sample", async (req, res) => {
+  try {
+    await Product.deleteMany(); // clear old data
+
+    const products = [
+      {
+        name: "Smartphone",
+        price: 600,
+        category: "Electronics",
+        variants: [],
+      },
+      {
+        name: "Running Shoes",
+        price: 120,
+        category: "Footwear",
+        variants: [
+          { color: "Red", size: "8", stock: 50 },
+          { color: "Blue", size: "9", stock: 30 },
+        ],
+      },
+      {
+        name: "T-shirt",
+        price: 25,
+        category: "Apparel",
+        variants: [
+          { color: "Black", size: "M", stock: 100 },
+          { color: "White", size: "L", stock: 60 },
+        ],
+      },
+    ];
+
+    await Product.insertMany(products);
+    res.status(201).json({ message: "Sample data inserted successfully!" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ✅ 1. Get all products
+app.get("/products", async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ✅ 2. Get products by category
+app.get("/products/category/:category", async (req, res) => {
+  try {
+    const category = req.params.category;
+    const products = await Product.find({ category: category });
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ✅ 3. Get products by variant color
+app.get("/products/by-color/:color", async (req, res) => {
+  try {
+    const color = req.params.color;
+    const products = await Product.find({ "variants.color": color });
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ✅ Start Server
+const PORT = 4000; // change if needed
+app.listen(PORT, () =>
+  console.log(🚀 Server running on http://localhost:${PORT})
+);
+
+practical 5.2
+
+// ================================
+// STUDENT MANAGEMENT SYSTEM (MVC)
+// ================================
+
+// ================================
+// Model (Simulated Mongoose Schema)
+// ================================
+class Student {
+  constructor(id, name, age, course) {
+    this._id = id;
+    this.name = name;
+    this.age = age;
+    this.course = course;
+  }
+}
+
+// In-memory "Database"
+let students = [
+  new Student("1", "Alice Johnson", 20, "Computer Science"),
+  new Student("2", "Bob Smith", 22, "Mechanical Engineering"),
+  new Student("3", "Charlie Lee", 21, "Business Administration"),
+];
+
+// ================================
+// Controller
+// ================================
+const studentController = {
+  // Get all students
+  getAll: (req, res) => {
+    console.log("\n📘 All Students:");
+    console.table(students);
+  },
+
+  // Get one student by ID
+  getById: (id) => {
+    const student = students.find((s) => s._id === id);
+    if (student) {
+      console.log(\n📗 Student Found (ID: ${id}));
+      console.table([student]);
+    } else {
+      console.log(\n❌ Student with ID ${id} not found);
+    }
+  },
+
+  // Create new student
+  create: (data) => {
+    const newStudent = new Student(
+      (students.length + 1).toString(),
+      data.name,
+      data.age,
+      data.course
+    );
+    students.push(newStudent);
+    console.log("\n🟢 Student Created:");
+    console.table([newStudent]);
+  },
+
+  // Update student by ID
+  update: (id, newData) => {
+    const student = students.find((s) => s._id === id);
+    if (student) {
+      Object.assign(student, newData);
+      console.log(\n🟡 Student Updated (ID: ${id}));
+      console.table([student]);
+    } else {
+      console.log(\n❌ Cannot update, student with ID ${id} not found);
+    }
+  },
+
+  // Delete student by ID
+  delete: (id) => {
+    const index = students.findIndex((s) => s._id === id);
+    if (index !== -1) {
+      const deleted = students.splice(index, 1)[0];
+      console.log(\n🔴 Student Deleted (ID: ${id}));
+      console.table([deleted]);
+    } else {
+      console.log(\n❌ Cannot delete, student with ID ${id} not found);
+    }
+  },
+};
+
+// ================================
+// Routes (Simulated HTTP Endpoints)
+// ================================
+function simulateRequests() {
+  console.log("🚀 Student Management System Started (Simulated MVC)\n");
+
+  studentController.getAll(); // GET all
+  studentController.getById("1"); // GET one
+  studentController.create({
+    name: "David Miller",
+    age: 23,
+    course: "Electrical Engineering",
+  }); // POST create
+  studentController.update("2", { name: "Bob Smith Jr.", age: 23 }); // PUT update
+  studentController.delete("1"); // DELETE
+  studentController.getAll(); // Show final list
+}
+
+// ================================
+// Run the Simulation
+// ================================
+simulateRequests();
+
+practical 5.3
+
+// main.js
+
+// Simulated E-commerce Catalog using nested document structure (MongoDB-like)
+
+const express = require("node:http"); // Dummy import not needed, Programiz runs Node automatically
+
+// Simulated product data (like MongoDB documents)
+let products = [
+  {
+    _id: "1",
+    name: "Smartphone",
+    price: 600,
+    category: "Electronics",
+    variants: [],
+  },
+  {
+    _id: "2",
+    name: "Running Shoes",
+    price: 120,
+    category: "Footwear",
+    variants: [
+      { color: "Red", size: "8", stock: 50 },
+      { color: "Blue", size: "9", stock: 30 },
+    ],
+  },
+  {
+    _id: "3",
+    name: "T-shirt",
+    price: 25,
+    category: "Apparel",
+    variants: [
+      { color: "Black", size: "M", stock: 100 },
+      { color: "White", size: "L", stock: 60 },
+    ],
+  },
+];
+
+// ✅ 1. Get all products
+function getAllProducts() {
+  console.log("✅ All Products:");
+  console.log(JSON.stringify(products, null, 2));
+}
+
+// ✅ 2. Filter by category
+function getProductsByCategory(category) {
+  const result = products.filter((p) => p.category === category);
+  console.log(\n✅ Products in category: ${category});
+  console.log(JSON.stringify(result, null, 2));
+}
+
+// ✅ 3. Filter by variant color
+function getProductsByColor(color) {
+  const result = products.filter((p) =>
+    p.variants.some((v) => v.color === color)
+  );
+  console.log(\n✅ Products with color: ${color});
+  console.log(JSON.stringify(result, null, 2));
+}
+
+// ✅ Simulated Execution (like Postman calls)
+console.log("🚀 Simulating E-commerce Catalog Operations...\n");
+getAllProducts();
+getProductsByCategory("Electronics");
+getProductsByColor("Blue");
