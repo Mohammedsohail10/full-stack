@@ -1,0 +1,318 @@
+practical 3.1
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      border: 1px solid #333;
+      padding: 20px;
+      width: 70%;
+      text-align: center;
+    }
+
+    .container h2 {
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .products {
+      display: flex;
+      justify-content: space-around;
+      gap: 15px;
+    }
+
+    .product {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .product h3 {
+      margin-bottom: 10px;
+    }
+
+    .product p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><b>Products List</b></h2>
+    <div class="products">
+      <div class="product">
+        <h3><b>Wireless Mouse</b></h3>
+        <p>Price: $25.99</p>
+        <p>Status: In Stock</p>
+      </div>
+      <div class="product">
+        <h3><b>Keyboard</b></h3>
+        <p>Price: $45.5</p>
+        <p>Status: Out of Stock</p>
+      </div>
+      <div class="product">
+        <h3><b>Monitor</b></h3>
+        <p>Price: $199.99</p>
+        <p>Status: In Stock</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+practical 3.2
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    .library-container {
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 25px;
+      background-color: white;
+      max-width: 600px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .search-box,
+    .add-box input {
+      width: calc(50% - 10px);
+      padding: 8px;
+      margin: 5px 5px 10px 0;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .search-box {
+      width: 98%;
+    }
+
+    .add-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .add-box button {
+      padding: 8px 12px;
+      background-color: #eee;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .book-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 8px;
+      background-color: #fafafa;
+    }
+
+    .book-item b {
+      font-weight: bold;
+    }
+
+    .remove-btn {
+      padding: 6px 12px;
+      background-color: #eee;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="library-container">
+    <h2>Library Management</h2>
+    <input type="text" class="search-box" placeholder="Search by title or author">
+    <div class="add-box">
+      <input type="text" placeholder="New book title">
+      <input type="text" placeholder="New book author">
+      <button>Add Book</button>
+    </div>
+
+    <div class="book-item">
+      <span><b>1984</b> by George Orwell</span>
+      <button class="remove-btn">Remove</button>
+    </div>
+    <div class="book-item">
+      <span><b>The Great Gatsby</b> by F. Scott Fitzgerald</span>
+      <button class="remove-btn">Remove</button>
+    </div>
+    <div class="book-item">
+      <span><b>To Kill a Mockingbird</b> by Harper Lee</span>
+      <button class="remove-btn">Remove</button>
+    </div>
+  </div>
+
+  <div class="library-container">
+    <h2>Library Management</h2>
+    <input type="text" class="search-box" value="great">
+    <div class="add-box">
+      <input type="text" placeholder="New book title">
+      <input type="text" placeholder="New book author">
+      <button>Add Book</button>
+    </div>
+
+    <div class="book-item">
+      <span><b>The Great Gatsby</b> by F. Scott Fitzgerald</span>
+      <button class="remove-btn">Remove</button>
+    </div>
+  </div>
+
+</body>
+</html>
+
+practical 3.3
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Class Hierarchy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 250px;
+            text-align: center;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #0077cc;
+        }
+        .card p {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Person Class Hierarchy</h1>
+
+    <div class="container" id="output">
+        <!-- Output will be displayed here -->
+    </div>
+
+    <script>
+        // Base Person class
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            displayInfo() {
+                return `Name: ${this.name}, Age: ${this.age}`;
+            }
+        }
+
+        // Student subclass
+        class Student extends Person {
+            constructor(name, age, course) {
+                super(name, age);
+                this.course = course;
+            }
+
+            displayInfo() {
+                return `${super.displayInfo()}, Course: ${this.course}`;
+            }
+        }
+
+        // Teacher subclass
+        class Teacher extends Person {
+            constructor(name, age, subject) {
+                super(name, age);
+                this.subject = subject;
+            }
+
+            displayInfo() {
+                return `${super.displayInfo()}, Subject: ${this.subject}`;
+            }
+        }
+
+        // Creating instances
+        const student1 = new Student("Alice Johnson", 20, "Computer Science");
+        const teacher1 = new Teacher("Mr. Smith", 40, "Mathematics");
+
+        // Displaying results in HTML
+        const outputDiv = document.getElementById("output");
+
+        function createCard(person) {
+            const card = document.createElement("div");
+            card.className = "card";
+            const title = document.createElement("h2");
+            title.textContent = person instanceof Student ? "Student" : "Teacher";
+            const info = document.createElement("p");
+            info.textContent = person.displayInfo();
+            card.appendChild(title);
+            card.appendChild(info);
+            outputDiv.appendChild(card);
+        }
+
+        createCard(student1);
+        createCard(teacher1);
+    </script>
+</body>
+</html>
