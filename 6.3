@@ -1,0 +1,39 @@
+let users []:
+// Create Users
+function createUsers() (
+users L
+(id: "1". name: "Alice", balance: 10001.
+{ id: "2", name: "Bob", balance: 5003.
+1:
+console.log("HTTP/1.1 201 Created"):
+console.log({
+message: "Users created.".
+users.
+1):
+function transferMoney(fromiserid, toliserid, amount) {
+const sender users.find((u) u.ld --- fromUserId):
+const receiver users.find((u) u.id touserId);
+if (sender || receiver) {
+console.log("HTTP/1.1 404 Not Found"):
+console.log(message: "User not found."));
+return:
+if (sender.balance amount) (
+console.log("HTTP/1.1 400 Bad Request");
+console.log(message: "Insufficient balance" });
+return:
+}
+sender.balance amount:
+receiver.balance amount:
+console.log("HTTP/1.1 200 OK");
+console.log({
+message: Transferred $${amount} from ${sender.name} to ${receiver.name).
+sender Balance: sender.balance.
+receiverBalance: receiver.balance.
+10:
+}
+console.log("POST http://localhost:3000/create-users"):
+createUsers():
+console.log("\nPOST http://localhost:3000/transfer"):
+transferMoney("1", "2", 150);
+console.log("\nPOST http://localhost:3000/transfer");
+transferMoney("1", 12" 9001:
