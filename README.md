@@ -24,3 +24,15 @@ practical 2.3
 practical 10.1
 
 <img width="467" height="349" alt="Screenshot 2025-11-01 085416" src="https://github.com/user-attachments/assets/106249a2-094b-49e7-b944-ec0893d642b0" />
+
+
+
+practical 10.2
+
+
+<img width="720" height="612" alt="Screenshot 2025-11-01 092324" src="https://github.com/user-attachments/assets/7b43b0fe-96ae-4150-abd1-de5d862d4eae" />
+
+
+practical 10.3
+
+<img width="478" height="389" alt="Screenshot 2025-11-01 090531" src="https://github.com/user-attachments/assets/55d8bcd4-41ae-4cdd-b3c2-e91fce8c682d" />
