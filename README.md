@@ -19,3 +19,8 @@ practical 2.3
 
 ![practical 2 3](https://github.com/user-attachments/assets/7dd7de15-5261-4488-a6db-5a6c57bb92ef)
 
+
+
+practical 10.1
+
+<img width="467" height="349" alt="Screenshot 2025-11-01 085416" src="https://github.com/user-attachments/assets/106249a2-094b-49e7-b944-ec0893d642b0" />
