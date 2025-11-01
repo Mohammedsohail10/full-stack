@@ -1,0 +1,33 @@
+function simulateRequest(url, token) {
+  console.log(`\nGET ${url}`);
+  console.log("-----------------------------");
+
+  if (url === "/public") {
+    console.log("HTTP/1.1 200 OK");
+    console.log("This is a public route. No authentication required.\n");
+  } 
+  else if (url === "/protected") {
+    if (!token) {
+      console.log("HTTP/1.1 401 Unauthorized");
+      console.log("Authorization header missing or incorrect.\n");
+    } 
+    else if (token !== "mysecrettoken") {
+      console.log("HTTP/1.1 401 Unauthorized");
+      console.log("Invalid token.\n");
+    } 
+    else {
+      console.log("HTTP/1.1 200 OK");
+      console.log("You have accessed a protected route with a valid Bearer token!\n");
+    }
+  } 
+  else {
+    console.log("HTTP/1.1 404 Not Found");
+    console.log("Route not found.\n");
+  }
+}
+
+// Simulate different requests
+simulateRequest("/public");
+simulateRequest("/protected");
+simulateRequest("/protected", "wrongtoken");
+simulateRequest("/protected", "mysecrettoken");
