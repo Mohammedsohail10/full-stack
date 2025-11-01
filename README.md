@@ -52,3 +52,18 @@ practical 9.3
 <img width="810" height="692" alt="Screenshot 2025-10-31 210150" src="https://github.com/user-attachments/assets/7c5eeb13-6329-4dbb-94dd-a4d61c4389dc" />
 
 
+ practical 8.3
+
+<img width="594" height="469" alt="Screenshot 2025-10-31 151317" src="https://github.com/user-attachments/assets/2715cea1-186f-4f04-99b0-c23c0ac7b0d3" />
+
+
+practical 8.2
+
+<img width="1183" height="469" alt="Screenshot 2025-10-31 151054" src="https://github.com/user-attachments/assets/dc50af99-c5d6-4ab8-a938-410abe46b2cd" />
+<img width="1137" height="473" alt="Screenshot 2025-10-31 151106" src="https://github.com/user-attachments/assets/89d7061d-6fdc-47fc-b43a-51909421e3ac" />
+<img width="1164" height="470" alt="Screenshot 2025-10-31 151114" src="https://github.com/user-attachments/assets/7366f410-3afe-4919-ae70-404581bf9bc7" />
+
+
+practical 8.1
+
+<img width="1052" height="826" alt="Screenshot 2025-10-28 082746" src="https://github.com/user-attachments/assets/bbb6603b-bfe9-4aea-8d43-ad5f47bddeab" />
